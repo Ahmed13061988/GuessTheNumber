@@ -20,13 +20,16 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.message').textContent = '⛔️ No number!';
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = '🥳 Correct Number!';
-  } else if (guess > secretNumber) {
+  } else if (guess > secretNumber && score > 1) {
     document.querySelector('.message').textContent = '📈 Too high!';
     score = score - 1;
     document.querySelector('.score').textContent = score;
-  } else if (guess < secretNumber) {
+  } else if (guess < secretNumber && score > 1) {
     document.querySelector('.message').textContent = '📉 Too low';
     score = score - 1;
     document.querySelector('.score').textContent = score;
+  } else {
+    document.querySelector('.message').textContent = 'Game Over 😞';
+    document.querySelector('.score').textContent = 0;
   }
 });
