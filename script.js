@@ -1,6 +1,10 @@
 'use strict';
 
-let secretNumber = Math.trunc(Math.random() * 20) + 1;
+const setSicretNumber = function () {
+  return Math.trunc(Math.random() * 20) + 1;
+};
+
+let secretNumber = setSicretNumber();
 
 let score = 20;
 let highScore = 0;
@@ -9,14 +13,21 @@ const message = function (output) {
   return (document.querySelector('.message').textContent = output);
 };
 
+const setNumber = function (output) {
+  return (document.querySelector('.number').textContent = output);
+};
+
+const setScore = function (output) {
+  return (document.querySelector('.score').textContent = output);
+};
+
 document.querySelector('.again').addEventListener('click', function () {
   score = 20;
-  secretNumber = Math.trunc(Math.random() * 20) + 1;
-  //   document.querySelector('.message').textContent = 'Start guessing...';
+  secretNumber = setSicretNumber();
   message('Start guessing...');
   document.querySelector('.guess').value = '';
-  document.querySelector('.score').textContent = score;
-  document.querySelector('.number').textContent = '?';
+  setScore(score);
+  setNumber('?');
   document.querySelector('.number').style.width = '15rem';
   document.querySelector('body').style.backgroundColor = '#222';
 });
@@ -28,21 +39,21 @@ document.querySelector('.check').addEventListener('click', function () {
     message('⛔️ No number!');
     //When player guess the number
   } else if (guess !== secretNumber) {
-    document.querySelector('.message').textContent =
-      guess > secretNumber ? '📈 Too high!' : '📉 Too low';
+    message(guess > secretNumber ? '📈 Too high!' : '📉 Too low');
     score--;
-    document.querySelector('.score').textContent = score;
+    setScore(score);
+    if (score < 1) {
+      setScore(0);
+      message('Game Over 😞');
+    }
   } else if (guess === secretNumber) {
     message('🥳 Correct Number!');
     document.querySelector('body').style.backgroundColor = 'green';
-    document.querySelector('.number').textContent = secretNumber;
-    document.querySelector('.number').style.width = '30rem'; //always should equal to string.
+    setNumber(secretNumber);
+    document.querySelector('.number').style.width = '30rem'; //always should equal to string in styling
     if (score > highScore) {
       highScore = score;
     }
     document.querySelector('.highscore').textContent = highScore;
-  } else {
-    message('Game Over 😞');
-    document.querySelector('.score').textContent = 0;
   }
 });
