@@ -22,6 +22,8 @@ document.querySelector('.check').addEventListener('click', function () {
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = '🥳 Correct Number!';
     document.querySelector('body').style.backgroundColor = 'green';
+
+    document.querySelector('.number').style.width = '30rem'; //always should equal to string.
     //When player guess too high
   } else if (guess > secretNumber && score > 1) {
     document.querySelector('.message').textContent = '📈 Too high!';
