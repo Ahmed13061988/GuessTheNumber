@@ -5,10 +5,15 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highScore = 0;
 
+const message = function (output) {
+  return (document.querySelector('.message').textContent = output);
+};
+
 document.querySelector('.again').addEventListener('click', function () {
   score = 20;
   secretNumber = Math.trunc(Math.random() * 20) + 1;
-  document.querySelector('.message').textContent = 'Start guessing...';
+  //   document.querySelector('.message').textContent = 'Start guessing...';
+  message('Start guessing...');
   document.querySelector('.guess').value = '';
   document.querySelector('.score').textContent = score;
   document.querySelector('.number').textContent = '?';
