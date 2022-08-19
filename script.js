@@ -3,6 +3,7 @@
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 let score = 20;
+let highScore = 0;
 
 document.querySelector('.again').addEventListener('click', function () {
   score = 20;
@@ -25,8 +26,11 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.message').textContent = '🥳 Correct Number!';
     document.querySelector('body').style.backgroundColor = 'green';
     document.querySelector('.number').textContent = secretNumber;
-
     document.querySelector('.number').style.width = '30rem'; //always should equal to string.
+    if (score > highScore) {
+      highScore = score;
+    }
+    document.querySelector('.highscore').textContent = highScore;
     //When player guess too high
   } else if (guess > secretNumber && score > 1) {
     document.querySelector('.message').textContent = '📈 Too high!';
