@@ -25,7 +25,7 @@ document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   //When is there no input
   if (!guess) {
-    document.querySelector('.message').textContent = '⛔️ No number!';
+    message('⛔️ No number!');
     //When player guess the number
   } else if (guess !== secretNumber) {
     document.querySelector('.message').textContent =
@@ -33,7 +33,7 @@ document.querySelector('.check').addEventListener('click', function () {
     score--;
     document.querySelector('.score').textContent = score;
   } else if (guess === secretNumber) {
-    document.querySelector('.message').textContent = '🥳 Correct Number!';
+    message('🥳 Correct Number!');
     document.querySelector('body').style.backgroundColor = 'green';
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('.number').style.width = '30rem'; //always should equal to string.
@@ -42,7 +42,7 @@ document.querySelector('.check').addEventListener('click', function () {
     }
     document.querySelector('.highscore').textContent = highScore;
   } else {
-    document.querySelector('.message').textContent = 'Game Over 😞';
+    message('Game Over 😞');
     document.querySelector('.score').textContent = 0;
   }
 });
